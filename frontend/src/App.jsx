@@ -47,24 +47,15 @@ function App() {
     try {
       const newOrder = await ordersApi.create(orderData)
       setOrders([...orders, newOrder])
-      setOutputMessage({
-        type: 'success',
-        title: 'Order Added Successfully!',
-        details: `Order #${newOrder.orderId} from ${orderData.restaurantName} has been added.`
-      })
+      setActiveTab('orders')
     } catch (error) {
       console.error('Error adding order:', error)
-      // Fallback to local state
       const localOrder = {
         orderId: Date.now(),
         ...orderData
       }
       setOrders([...orders, localOrder])
-      setOutputMessage({
-        type: 'success',
-        title: 'Order Added Locally',
-        details: `Order from ${orderData.restaurantName} has been added (offline mode).`
-      })
+      setActiveTab('orders')
     }
   }
 
@@ -121,31 +112,24 @@ function App() {
           : order
       ))
     }
-
-    setOutputMessage({
-      type: 'success',
-      title: 'Delivery Assigned!',
-      details: `Order #${nearestOrder.orderId} from ${nearestOrder.restaurantName} (${nearestOrder.deliveryDistance} km) has been assigned for delivery.`,
-      order: nearestOrder
-    })
   }
 
   const togglePaymentStatus = async (orderId) => {
     const order = orders.find(o => o.orderId === orderId)
-    if (!order) return
+    if (!order || order.isPaid) return
 
     try {
-      await ordersApi.togglePayment(orderId, !order.isPaid)
+      await ordersApi.togglePayment(orderId, true)
       setOrders(orders.map(o =>
         o.orderId === orderId
-          ? { ...o, isPaid: !o.isPaid }
+          ? { ...o, isPaid: true }
           : o
       ))
     } catch (error) {
       console.error('Error toggling payment:', error)
       setOrders(orders.map(o =>
         o.orderId === orderId
-          ? { ...o, isPaid: !o.isPaid }
+          ? { ...o, isPaid: true }
           : o
       ))
     }
@@ -189,9 +173,8 @@ function App() {
       <header className="app-header">
         <div className="header-content">
           <div className="logo-section">
-            <h1>Food Delivery</h1>
+            <h1>Food Delivery System</h1>
           </div>
-          <p className="tagline">Smart Order & Delivery Manager</p>
         </div>
       </header>
 
@@ -262,10 +245,6 @@ function App() {
 
         <OutputPanel message={outputMessage} onClose={() => setOutputMessage(null)} />
       </main>
-
-      <footer className="app-footer">
-        <p>Food Delivery Order Manager 2026</p>
-      </footer>
     </div>
   )
 }

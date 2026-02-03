@@ -28,15 +28,15 @@ function FilterPanel({
             <div className="radio-group">
               <label className="radio-label">
                 <input type="radio" name="status" value="all" checked={filterStatus === 'all'} onChange={(e) => setFilterStatus(e.target.value)} />
-                <span className="radio-custom"></span> All
+                All
               </label>
               <label className="radio-label">
                 <input type="radio" name="status" value="paid" checked={filterStatus === 'paid'} onChange={(e) => setFilterStatus(e.target.value)} />
-                <span className="radio-custom"></span> Paid Only
+                Paid Only
               </label>
               <label className="radio-label">
                 <input type="radio" name="status" value="unpaid" checked={filterStatus === 'unpaid'} onChange={(e) => setFilterStatus(e.target.value)} />
-                <span className="radio-custom"></span> Unpaid Only
+                Unpaid Only
               </label>
             </div>
           </div>

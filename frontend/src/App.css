@@ -416,6 +416,7 @@
   gap: 1rem;
   flex-wrap: wrap;
   margin-top: 0.5rem;
+  justify-content: flex-start;
 }
 
 .radio-label {
@@ -427,32 +428,9 @@
 }
 
 .radio-label input[type="radio"] {
-  display: none;
-}
-
-.radio-custom {
-  width: 20px;
-  height: 20px;
-  border: 2px solid var(--gray-light);
-  border-radius: 50%;
-  position: relative;
-  transition: var(--transition);
-}
-
-.radio-label input:checked+.radio-custom {
-  border-color: var(--primary);
-}
-
-.radio-label input:checked+.radio-custom::after {
-  content: '';
-  width: 10px;
-  height: 10px;
-  background: var(--primary);
-  border-radius: 50%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
 }
 
 .clear-btn {
