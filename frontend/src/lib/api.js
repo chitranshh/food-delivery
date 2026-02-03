@@ -1,4 +1,4 @@
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3001/api'
+const API_BASE = import.meta.env.VITE_API_URL || 'https://food-delivery-75p3.onrender.com/api'
 
 export const ordersApi = {
     async getAll() {
