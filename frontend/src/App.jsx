@@ -23,21 +23,10 @@ function App() {
       setLoading(true)
       const data = await ordersApi.getAll()
       setOrders(data)
+      setOutputMessage(null)
     } catch (error) {
       console.error('Error loading orders:', error)
-      setOutputMessage({
-        type: 'error',
-        title: 'Error Loading Orders',
-        details: error.message
-      })
-      // Fallback to sample data if Supabase is not configured
-      setOrders([
-        { orderId: 1, restaurantName: 'Pizza Palace', itemCount: 3, isPaid: false, deliveryDistance: 2.5 },
-        { orderId: 2, restaurantName: 'Burger Barn', itemCount: 2, isPaid: true, deliveryDistance: 5.0 },
-        { orderId: 3, restaurantName: 'Sushi Station', itemCount: 5, isPaid: false, deliveryDistance: 1.8 },
-        { orderId: 4, restaurantName: 'Taco Town', itemCount: 4, isPaid: false, deliveryDistance: 7.2 },
-        { orderId: 5, restaurantName: 'Pasta Paradise', itemCount: 1, isPaid: true, deliveryDistance: 3.0 },
-      ])
+      setOrders([])
     } finally {
       setLoading(false)
     }
