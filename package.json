@@ -1,0 +1,11 @@
+{
+  "name": "food-delivery",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "cd frontend && npm run dev",
+    "server": "cd backend && npm start",
+    "install:all": "cd backend && npm install && cd ../frontend && npm install",
+    "start": "cd backend && npm start & cd frontend && npm run dev"
+  }
+}
