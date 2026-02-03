@@ -19,6 +19,10 @@ async function connectDB() {
     console.log('Connected to MongoDB')
 }
 
+app.get('/', (req, res) => {
+    res.json({ status: 'ok', message: 'Food Delivery API' })
+})
+
 app.get('/api/orders', async (req, res) => {
     try {
         const orders = await db.collection(COLLECTION).find().sort({ orderId: 1 }).toArray()
