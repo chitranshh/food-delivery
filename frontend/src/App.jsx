@@ -70,7 +70,7 @@ function App() {
     }
 
     const eligibleOrders = orders.filter(
-      order => !order.isPaid && order.deliveryDistance <= maxDistance
+      order => !order.isPaid && parseFloat(order.deliveryDistance) <= parseFloat(maxDistance)
     )
 
     if (eligibleOrders.length === 0) {
